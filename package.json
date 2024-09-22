@@ -1,0 +1,32 @@
+{
+  "name": "plantopia",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.3",
+    "@astrojs/db": "^0.14.1",
+    "@astrojs/node": "^8.3.3",
+    "@astrojs/solid-js": "^4.4.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.15.5",
+    "astro-icon": "^1.1.1",
+    "clsx": "^2.1.1",
+    "sass": "^1.79.1",
+    "solid-js": "^1.8.22",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-astro-organize-imports": "^0.4.9",
+    "prettier-plugin-tailwindcss": "^0.6.6"
+  }
+}

@@ -1,0 +1,92 @@
+---
+import {Icon} from 'astro-icon/components';
+// import {actions} from 'astro:actions';
+import {Image} from 'astro:assets';
+import {db, Plant /*Registrars*/} from 'astro:db';
+import {
+  Button,
+  Card,
+  CardImage,
+  CardProperties,
+  CardProperty,
+  CardTitle,
+  Container,
+  Form,
+  Header,
+  Logo,
+  Page,
+} from '~/components';
+import {Layout} from '~/layouts';
+import {PlantCardForm} from '~/views';
+
+const description = 'An app for tracking watering your plants';
+// const registrars = await db.select().from(Registrars);
+const plants = await db.select().from(Plant);
+---
+
+<Layout title="Home page" description={description}>
+  <Page>
+    <Container>
+      <Header title={description}>
+        <Logo>
+          <Icon name="plant" slot="icon" />
+        </Logo>
+        <Button>
+          <Icon name="plant" />
+          Add plant
+        </Button>
+      </Header>
+      <ul class="grid grid-cols-fit-240 gap-8">
+        {
+          plants.map((plant) => (
+            <li>
+              <Card>
+                <CardImage>
+                  <Image src={plant.imageSource} alt={plant.name} inferSize />
+                </CardImage>
+                <CardTitle>{plant.name}</CardTitle>
+                <CardProperties>
+                  <CardProperty key="Next watering" value="8 days">
+                    <Icon name="water" slot="icon" />
+                  </CardProperty>
+                  <CardProperty key="Water frequency" value="2/week">
+                    <Icon name="stopwatch" slot="icon" />
+                  </CardProperty>
+                  <CardProperty key="Last watered" value="4 days ago">
+                    <Icon name="history" slot="icon" />
+                  </CardProperty>
+                  <CardProperty key="Location" value={plant.location}>
+                    <Icon name="house" slot="icon" />
+                  </CardProperty>
+                </CardProperties>
+                <PlantCardForm plant={plant} isToday client:load />
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+      <!-- <h1 class="mb-4 text-3xl font-bold tracking-tighter">
+        Sign up for the newsletter!
+      </h1> -->
+      <!-- <Form id="form" action={actions.register} method="post">
+        <input
+          class="rounded-2xl border p-2"
+          form="form"
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+        <button form="form" class="rounded-2xl bg-sky-500 p-2">Submit</button>
+      </Form>
+      <ul>
+        {registrars.map((registrar) => <li>{registrar.email}</li>)}
+      </ul> -->
+      <footer
+        class="mt-8 grid place-items-center border-t-2 border-slate-950 p-4 text-2xl font-bold"
+      >
+        Plantopia
+      </footer>
+    </Container>
+  </Page>
+</Layout>

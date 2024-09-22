@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background-page: #f8fafc;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Bitter', serif;
+
+  background-color: var(--color-background-page);
+
+  font-optical-sizing: auto;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+svg[data-icon] {
+  font-size: 1.5rem;
+}
